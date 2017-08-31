@@ -12,9 +12,12 @@ class PostsIndex extends Component {
     return (
       _.map(this.props.posts, (post) => {
         return (
-          <div>
-            {post.title}
-            {post.category}
+          <div className='panel panel-primary' key={post.id}>
+            <div className='panel-heading'>
+              {post.title}
+            </div>
+            <br /> {post.categories}
+            <br /> {post.content}
           </div>
         )
       })
@@ -24,7 +27,7 @@ class PostsIndex extends Component {
     return (
       <div>
         Posts Index
-        <Link to='/new' className='btn btn-primary pull-right'>Add a Post</Link>
+        <Link to='/posts/new' className='btn btn-primary pull-right'>Add a Post</Link>
         {this.renderPosts()}
       </div>
     )
