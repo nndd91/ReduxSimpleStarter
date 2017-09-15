@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
-import { fetchPost } from '../actions'
+import { fetchPost, deletePost } from '../actions'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 class PostsShow extends Component {
   componentDidMount () {
     // Get the id from URL. match function is provided by react router that get the :id from the url.
-    const { id } = this.props.match.params.id
+    const { id } = this.props.match.params
     this.props.fetchPost(id)
+  }
+
+  onDeleteClick () {
+    const { id } = this.props.match.params
+    this.props.deletePost(id, () => {
+      this.props.history.push('/')
+    })
   }
 
   render () {
@@ -45,4 +52,4 @@ function mapStateToProps ({ posts }, ownProps) {
   }
 }
 
-export default connect(mapStateToProps, { fetchPost })(PostsShow)
+export default connect(mapStateToProps, { fetchPost, deletePost })(PostsShow)
