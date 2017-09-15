@@ -12,13 +12,17 @@ class PostsIndex extends Component {
     return (
       _.map(this.props.posts, (post) => {
         return (
-          <div className='panel panel-primary' key={post.id}>
-            <div className='panel-heading'>
-              {post.title}
+          <Link to={`/posts/${post.id}`}>
+            <div className='panel panel-default' key={post.id} style={{'border': '1px solid grey', 'borderRadius': '5px'}}>
+              <div className='panel-heading'>
+                <div className='panel-title'>
+                  {post.title}
+                </div>
+              </div>
+              <br /> {post.categories}
+              <br /> {post.content}
             </div>
-            <br /> {post.categories}
-            <br /> {post.content}
-          </div>
+          </Link>
         )
       })
     )
